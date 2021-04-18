@@ -266,17 +266,20 @@ def num_file_func():
     full_text = ""
     num_check = ""
     full_del_text = ""
-    i = 1
+    
     for num, line in enumerate(f,1):
-        i = i + 1
         f = open(num_file_ask,'r')
         num_check = str(num) + '. '
         full_del_text = full_del_text + line.replace(num_check,"")
-    number = str(i) + ". "
-    full_del_text = full_del_text.replace(number,"")
-    
+    f = open(num_file_ask,"r")
+    lines = f.readlines()
+    len_lines = len(lines) + 2
+    for number in range(len_lines):
+        number_str = str(number) + ". "
+        x = full_del_text.replace(number_str,"")
+
     f = open(num_file_ask,'w')
-    f.write(full_del_text)
+    f.write(x)
     f = open(num_file_ask,'r')
     for num, line in enumerate(f,1):
         text = str(num)+ '. ' + line.strip() + '\n'
@@ -375,9 +378,3 @@ def discover_calendar():
     my_button.pack(pady=20)
 
 osnova()
-
-        
-
-
-
-
