@@ -228,13 +228,15 @@ def seach_word():
     seach_string = StringVar()
     seach_entry = Entry(seach_file,textvariable=seach_string,bg=tema_full,fg=text_tema)
     seach_entry.pack()
+    
     def find_word():
         n = 0
         for line in lines:
             n = n + 1
-            find = line.find(str(seach_entry.get()))
-            find_text = "\n" + "Ввод: " + seach_entry.get()
-            if find == 0:
+            what_find = seach_entry.get()
+            find = line.find(what_find)
+            if find > -1:
+                find_text = "\n" + "Ввод: " + what_find
                 word_lbl = Label(seach_file,text=find_text,bg=tema_full,fg=text_tema)
                 word_lbl.pack()
                 n_text = "Номер строки: " + str(n)
@@ -243,6 +245,8 @@ def seach_word():
                 result_lbl.pack()
                 number_lbl = Label(seach_file,text=n_text,bg=tema_full,fg=text_tema)
                 number_lbl.pack()
+            else:
+                pass
                                
 
     seach_btn = Button(seach_file,text="Найти",command=find_word,bg=tema_full,fg=text_tema)
